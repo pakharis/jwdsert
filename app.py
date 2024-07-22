@@ -57,7 +57,8 @@ def input(no):
 @application.route('/update/<no>')
 def update(no):
 	model = MPeserta()
-	program = ['Pelatihan Web Developer','Data Scientist','Android Developer','Video Editor','Animator','Content Creator','Enterprise Resource Planning','Desainer Grafis','Teknisi Jaringan']
+	program = []
+	program = model.getProgram()
 	data = model.getDBbyNo(no)
 	return render_template('updateform.html', data = data, program=program)
 
