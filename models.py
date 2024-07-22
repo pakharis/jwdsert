@@ -55,12 +55,12 @@ class MPeserta:
         cursor.execute("DELETE FROM peserta WHERE idpeserta=%s" % no)
         db.commit()
         self.closeDB()
-		
-	# def getProg(self):
-		# self.openDB()
-		# cursor.execute("SELECT * FROM program")
-		# container = []
-		# for idprogram, program, gambar, deskripsi in cursor.fetchall():
-			# container.append((idprogram, program, gambar, deskripsi))
-		# self.closeDB()
-		# return container
+        
+    def getProgram (self):
+        self.openDB()
+        cursor.execute("SELECT * FROM program")
+        container = []
+        for idprogram, program, gambar, deskripsi in cursor.fetchall():
+            container.append((idprogram, program, gambar, deskripsi))
+        self.closeDB()
+        return container

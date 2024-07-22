@@ -5,10 +5,10 @@ application = Flask(__name__)
 
 @application.route('/')
 def index():
-    # model = MProduk()
-    # container = []
-    # container = model.selectDB()
-    return render_template('index.html')
+    model = MPeserta()
+    container = []
+    container = model.getProgram()
+    return render_template('index.html',container=container)
 
 @application.route('/daftar')
 def daftar():
@@ -30,7 +30,10 @@ def insert():
 		model.insertDB(data)
 		return redirect(url_for('daftar'))
 	else:
-		return render_template('insert_form.html')
+		model = MPeserta()
+		program = []
+		program = model.getProgram()
+		return render_template('insert_form.html',program=program)
 
 @application.route('/input/<no>', methods=['GET', 'POST'])
 def input(no):
@@ -46,7 +49,9 @@ def input(no):
 		return redirect(url_for('daftar'))
 	else:
 		no = no
-		program = ['Pelatihan Web Developer','Data Scientist','Android Developer','Video Editor','Animator','Content Creator','Enterprise Resource Planning','Desainer Grafis','Teknisi Jaringan']
+		model = MPeserta()
+		program = []
+		program = model.getProgram()
 		return render_template('insert_form.html',program=program,no=no)
 
 @application.route('/update/<no>')
